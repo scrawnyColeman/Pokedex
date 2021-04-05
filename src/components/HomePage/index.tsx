@@ -15,7 +15,7 @@ type Pokemon = species;
 const HomePage = (): JSX.Element => {
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
   useEffect(() => {
-    const fetchRequiredPokemonData = async (): Promise<any> => {
+    const fetchRequiredPokemonData = async (): Promise<void> => {
       const result = await fetch(
         "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5"
       );
