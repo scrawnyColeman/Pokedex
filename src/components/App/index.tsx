@@ -1,7 +1,6 @@
 import React from "react";
+import Routing from "../Routing";
 
-const App = () => {
-  return <div>Pokedex App</div>;
-};
+export const App = (): JSX.Element => <Routing />;
 
 export default App;
