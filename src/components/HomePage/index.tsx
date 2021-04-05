@@ -3,17 +3,14 @@ import PokemonCard from "../PokemonCard";
 import { StyledContainer } from "./style";
 
 type PokemonVerbose = {
-  species: Object;
+  species: species;
   order: number;
-  types: Object[];
-  abilities: Object[];
-  stats: Object[];
-  sprites: Object;
+  types: types;
+  abilities: abilities;
+  stats: stats;
+  sprites: sprites;
 };
-type Pokemon = {
-  name: string;
-  url: string;
-};
+type Pokemon = species;
 
 const HomePage = (): JSX.Element => {
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
@@ -24,20 +21,22 @@ const HomePage = (): JSX.Element => {
       );
       const pokedexListData = await result.json();
       const { results } = pokedexListData;
-      const pokeList: PokemonVerbose[] = results.map(async (poke: Pokemon) => {
-        const { url } = poke;
-        const result = await fetch(url);
-        const pokedexData = await result.json();
-        const {
-          species,
-          order,
-          types,
-          abilities,
-          stats,
-          sprites
-        } = pokedexData;
-        return { species, order, types, abilities, stats, sprites };
-      });
+      const pokeList: Array<PokemonVerbose> = results.map(
+        async (poke: Pokemon) => {
+          const { url } = poke;
+          const result = await fetch(url);
+          const pokedexData = await result.json();
+          const {
+            species,
+            order,
+            types,
+            abilities,
+            stats,
+            sprites
+          } = pokedexData;
+          return { species, order, types, abilities, stats, sprites };
+        }
+      );
       setPokemonData(await Promise.all(pokeList));
     };
     fetchRequiredPokemonData();
