@@ -1,6 +1,6 @@
 import React from "react";
 
-const PokemonProfile = () => {
+const PokemonProfile = (): JSX.Element => {
   return <div></div>;
 };
 

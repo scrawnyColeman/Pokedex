@@ -1,6 +1,6 @@
 import React from "react";
 
-const PokemonCard = () => {
+const PokemonCard = (): JSX.Element => {
   return <div></div>;
 };
 
