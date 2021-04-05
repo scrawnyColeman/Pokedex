@@ -164,7 +164,6 @@ interface stat {
     url: string;
   };
 }
-interface stats extends Array<stat> {}
 
 interface ability {
   ability: {
@@ -175,9 +174,7 @@ interface ability {
   slot: number;
 }
 
-interface abilities extends Array<ability> {}
-
-interface types {
+interface type {
   slot: number;
   type: {
     name: string;
@@ -188,4 +185,13 @@ interface types {
 interface species {
   name: string;
   url: string;
+}
+
+interface PokemonVerbose {
+  species?: species;
+  order: number;
+  types?: type[];
+  abilities?: ability[];
+  stats?: stat[];
+  sprites?: sprites;
 }
