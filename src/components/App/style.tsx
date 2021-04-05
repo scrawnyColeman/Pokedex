@@ -9,7 +9,7 @@ export const StyledHeader = styled.div`
   letter-spacing: 2px;
   font-size: 2rem;
   text-align: center;
-  color: #eee;
+  color: #141414;
   font-weight: 600;
   background-image: linear-gradient(to-right, #bb0000, red);
 `;
