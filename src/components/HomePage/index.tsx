@@ -17,7 +17,7 @@ const HomePage = (): JSX.Element => {
   useEffect(() => {
     const fetchRequiredPokemonData = async (): Promise<void> => {
       const result = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5"
+        "https://pokeapi.co/api/v2/pokemon/?limit=151"
       );
       const pokedexListData = await result.json();
       const { results } = pokedexListData;
@@ -37,6 +37,7 @@ const HomePage = (): JSX.Element => {
           return { species, order, types, abilities, stats, sprites };
         }
       );
+      console.log(await Promise.all(pokeList));
       setPokemonData(await Promise.all(pokeList));
     };
     fetchRequiredPokemonData();
