@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import PokemonCard from "../PokemonCard";
 import { StyledContainer } from "./style";
 
-type PokemonVerbose = {
+interface PokemonVerbose {
   species: species;
   order: number;
   types: types;
   abilities: abilities;
   stats: stats;
   sprites: sprites;
-};
+}
 type Pokemon = species;
 
 const HomePage = (): JSX.Element => {

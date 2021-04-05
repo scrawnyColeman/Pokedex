@@ -1,4 +1,4 @@
-type sprites = {
+interface sprites {
   back_default: string | null;
   back_female: string | null;
   back_shiny: string | null;
@@ -26,35 +26,38 @@ type sprites = {
     "generation-vii": {};
     "generation-viii": {};
   };
-};
+}
 
-type stats = Array<{
+interface stat {
   base_stat: number;
   effort: number;
   stat: {
     name: string;
     url: string;
   };
-}>;
+}
+interface stats extends Array<stat> {}
 
-type abilities = Array<{
+interface ability {
   ability: {
     name: string;
     url: string;
   };
   is_hidden: boolean;
   slot: number;
-}>;
+}
 
-type types = {
+interface abilities extends Array<ability> {}
+
+interface types {
   slot: number;
   type: {
     name: string;
     url: string;
   };
-};
+}
 
-type species = {
+interface species {
   name: string;
   url: string;
-};
+}
