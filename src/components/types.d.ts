@@ -17,14 +17,142 @@ interface sprites {
     };
   };
   versions: {
-    "generation-i": {};
-    "generation-ii": {};
-    "generation-iii": {};
-    "generation-iv": {};
-    "generation-v": {};
-    "generation-vi": {};
-    "generation-vii": {};
-    "generation-viii": {};
+    "generation-i": {
+      "red-blue": {
+        back_default: string | null;
+        back_gray: string | null;
+        front_default: string | null;
+        front_gray: string | null;
+      };
+      yellow: {
+        back_default: string | null;
+        back_gray: string | null;
+        front_default: string | null;
+        front_gray: string | null;
+      };
+    };
+    "generation-ii": {
+      crystal: {
+        back_default: string | null;
+        back_shiny: string | null;
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+      gold: {
+        back_default: string | null;
+        back_shiny: string | null;
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+      silver: {
+        back_default: string | null;
+        back_shiny: string | null;
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+    };
+    "generation-iii": {
+      emerald: {
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+      "firered-leafgreen": {
+        back_default: string | null;
+        back_shiny: string | null;
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+      "ruby-sapphire": {
+        back_default: string | null;
+        back_shiny: string | null;
+        front_default: string | null;
+        front_shiny: string | null;
+      };
+    };
+    "generation-iv": {
+      "diamond-pearl": {
+        back_default: string | null;
+        back_female: null;
+        back_shiny: string | null;
+        back_shiny_female: null;
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+      "heartgold-soulsilver": {
+        back_default: string | null;
+        back_female: null;
+        back_shiny: string | null;
+        back_shiny_female: null;
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+      platinum: {
+        back_default: string | null;
+        back_female: null;
+        back_shiny: string | null;
+        back_shiny_female: null;
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+    };
+    "generation-v": {
+      animated: {
+        back_default: string | null;
+        back_female: null;
+        back_shiny: string | null;
+        back_shiny_female: null;
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+      back_default: string | null;
+      back_female: null;
+      back_shiny: string | null;
+      back_shiny_female: null;
+      front_default: string | null;
+      front_female: null;
+      front_shiny: string | null;
+      front_shiny_female: null;
+    };
+    "generation-vi": {
+      "omegaruby-alphasapphire": {
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+      "x-y": {
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+    };
+    "generation-vii": {
+      icons: {
+        front_default: string | null;
+        front_female: null;
+      };
+      "ultra-sun-ultra-moon": {
+        front_default: string | null;
+        front_female: null;
+        front_shiny: string | null;
+        front_shiny_female: null;
+      };
+    };
+    "generation-viii": {
+      icons: {
+        front_default: string | null;
+        front_female: null;
+      };
+    };
   };
 }
 
