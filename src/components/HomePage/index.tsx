@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PokemonCard from "../PokemonCard";
+import Spinner from "../Spinner";
 import { StyledContainer } from "./style";
 
-interface PokemonVerbose {
-  species?: species;
-  order: number;
-  types?: types;
-  abilities?: abilities;
-  stats?: stats;
-  sprites?: sprites;
-}
 type Pokemon = species;
 
 let uuid = 999999;
@@ -22,7 +15,7 @@ const HomePage = (): JSX.Element => {
     const fetchRequiredPokemonData = async (): Promise<void> => {
       setLoading(true);
       const result = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20"
+        "https://pokeapi.co/api/v2/pokemon/?limit=151"
       );
       const pokedexListData = await result.json();
       const { results } = pokedexListData;
@@ -43,11 +36,17 @@ const HomePage = (): JSX.Element => {
             return { species, order, types, abilities, stats, sprites };
           } catch {
             return {
-              order: uuid++
+              species: null,
+              order: uuid++,
+              types: null,
+              abilities: null,
+              stats: null,
+              sprites: null
             };
           }
         }
       );
+      console.log(await Promise.all(pokeList));
       setPokemonData(await Promise.all(pokeList));
       setLoading(false);
     };
@@ -55,15 +54,17 @@ const HomePage = (): JSX.Element => {
   }, []);
 
   return (
-    <StyledContainer>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        pokemonData.map(pokemon => (
-          <PokemonCard pokemon={pokemon} key={pokemon.order} />
-        ))
-      )}
-    </StyledContainer>
+    <>
+      <StyledContainer>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          pokemonData.map(pokemon => (
+            <PokemonCard pokemon={pokemon} key={pokemon.order} />
+          ))
+        )}
+      </StyledContainer>
+    </>
   );
 };
 
