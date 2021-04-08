@@ -75,7 +75,7 @@ const HomePage = (): JSX.Element => {
               <button
                 type="button"
                 onClick={() => {
-                  if (genNumber <= 8) {
+                  if (genNumber < 8) {
                     setGenNumber(genNumber + 1);
                   } else {
                     setGenNumber(1);
@@ -84,6 +84,7 @@ const HomePage = (): JSX.Element => {
               >
                 Next Generation
               </button>
+              {genNumber}
             </div>
             {pokemonData.map(pokemon => (
               <PokemonCard pokemon={pokemon} key={pokemon.order} />
