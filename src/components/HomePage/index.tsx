@@ -5,7 +5,7 @@ import { StyledContainer } from "./style";
 import { generations } from "../../data/generations";
 
 type Pokemon = Species;
-type generation = {
+type Generation = {
   number?: number;
   offset?: number;
   limit?: number;
@@ -17,7 +17,7 @@ const HomePage = (): JSX.Element => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [genNumber, setGenNumber] = useState<number>(1);
 
-  const generation: generation =
+  const generation: Generation =
     generations.find(gen => gen.number === genNumber) || {};
 
   const offset = generation?.offset;
