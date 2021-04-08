@@ -1,20 +1,32 @@
 import styled from "styled-components";
 
+interface CardHeadProps {
+  colorOne: string;
+  colorTwo: string;
+}
+
 export const StyledCard = styled.div`
   width: calc(33.3% - 0.75rem);
-  height: 20rem;
+  @media (max-width: 1156px) {
+    width: calc(50% - 0.75rem);
+  }
+  @media (max-width: 768px) {
+    width: calc(100% - 0.75rem);
+  }
+  height: 50vh;
   background-color: #eee;
   box-shadow: 0 0 5px 0 #1b1b23;
   margin-top: 1rem;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+  color: #eee;
 `;
 export const StyledImg = styled.img`
   position: absolute;
-  top: calc(50% - 3.75rem);
-  left: calc(50% - 3.75rem);
-  height: 7.5rem;
+  top: calc(40% - 7.5rem);
+  left: calc(50% - 7.5rem);
+  height: 15rem;
   z-index: 10;
 `;
 export const StyledPokeball = styled.img`
@@ -25,11 +37,18 @@ export const StyledPokeball = styled.img`
   transform: rotate(10deg);
 `;
 export const StyledCardHead = styled.div`
-  height: 50%;
+  height: 40%;
   display: flex;
   justify-content: flex-end;
   align-item: flex-end;
   overflow: hidden;
   position: relative;
+  background: linear-gradient(to right, ${(p: CardHeadProps) =>
+    p.colorOne + ", " + p.colorTwo + ");"}
 `;
-export const StyledCardBody = styled.div``;
+export const StyledCardBody = styled.div`
+  height: 60%;
+  background-color: #1e1e1e;
+  display: flex;
+  justify-content: space-between;
+`;
