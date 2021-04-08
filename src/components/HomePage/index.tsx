@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import PokemonCard from "../PokemonCard";
-import { StyledContainer } from "./style";
+import { StyledContainer, StyledBtn } from "./style";
 import usePokeFetch from "../../hooks/usePokeFetch";
 import { HourGlassSpinner } from "../Spinner/style";
 
 let uuid = 999999;
 
 const HomePage = (): JSX.Element => {
-  const observer: any = useRef();
+  const observer: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
   const [genNumber, setGenNumber] = useState<number>(1);
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=24`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6`
   );
   const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
 
@@ -27,7 +27,7 @@ const HomePage = (): JSX.Element => {
             setUrl(hasMore);
           }
         },
-        { rootMargin: "-400px" }
+        { rootMargin: "-600px" }
       );
       if (node) observer.current.observe(node);
     },
@@ -64,7 +64,7 @@ const HomePage = (): JSX.Element => {
       <StyledContainer>
         <>
           <div style={{ width: "100%" }}>
-            <button
+            <StyledBtn
               type="button"
               onClick={() => {
                 if (genNumber < 8) {
@@ -75,19 +75,17 @@ const HomePage = (): JSX.Element => {
               }}
             >
               Next Generation
-            </button>
+            </StyledBtn>
             {genNumber}
           </div>
           {pokemonData.map((pokemon, index) => {
             if (pokemonData.length === index + 1) {
               return (
-                <div
-                  style={{ height: "100%", width: "calc(33.3% - .75rem)" }}
-                  ref={lastPokemonRef}
+                <PokemonCard
+                  pokemon={pokemon}
                   key={pokemon.id}
-                >
-                  <PokemonCard last pokemon={pokemon} key={pokemon.id} />
-                </div>
+                  ref={lastPokemonRef}
+                />
               );
             }
             return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
