@@ -188,10 +188,10 @@ interface Species {
 }
 
 interface PokemonVerbose {
-  species?: Species;
+  species: Species;
   order: number;
-  types?: Type[];
-  abilities?: Ability[];
-  stats?: Stat[];
-  sprites?: Sprites;
+  types: Type[];
+  abilities: Ability[];
+  stats: Stat[];
+  sprites: Sprites;
 }

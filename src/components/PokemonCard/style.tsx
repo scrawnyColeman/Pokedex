@@ -51,4 +51,27 @@ export const StyledCardBody = styled.div`
   background-color: #1e1e1e;
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
+
+export const StyledCardBodyHeader = styled.div`
+  display: flex;
+  width: 100%;
+  height: 2rem;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  position: relative;
+  top: calc(100% - 2rem - 1rem);
+`;
+export const StyledCardBodyHeaderName = styled.div`
+  width: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+`;
+export const StyledCardBodyHeaderType = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+export const StyledCardBodyBottom = styled.div``;

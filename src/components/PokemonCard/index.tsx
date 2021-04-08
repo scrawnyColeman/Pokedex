@@ -4,7 +4,10 @@ import {
   StyledImg,
   StyledCardHead,
   StyledCardBody,
-  StyledPokeball
+  StyledPokeball,
+  StyledCardBodyHeader,
+  StyledCardBodyHeaderName,
+  StyledCardBodyHeaderType
 } from "./style";
 import pokeball from "../../assets/images/pokeball.svg";
 import { typeColors } from "../../data/typeColors";
@@ -15,6 +18,7 @@ type PokemonCardProps = {
 
 const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
   const { species, types, sprites } = pokemon;
+  const { name } = species;
 
   const typeOne: string = types?.[0].type.name || "normal";
   const colorOne: string =
@@ -33,7 +37,7 @@ const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
     <StyledCard>
       {sprites?.front_default && (
         <StyledImg
-          src={sprites?.other?.["official-artwork"].front_default}
+          src={sprites.other?.["official-artwork"].front_default}
           alt={species?.name}
         />
       )}
@@ -41,17 +45,14 @@ const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
         <StyledPokeball src={pokeball} alt="pokeball" />
       </StyledCardHead>
       <StyledCardBody>
-        <div style={{ width: "50%" }}>{species?.name}</div>
-        <div
-          style={{
-            width: "50%",
-            display: "flex",
-            justifyContent: "flex-end",
-            padding: ".5rem"
-          }}
-        >
-          {typeOne === typeTwo ? typeOne : `${typeOne} / ${typeTwo}`}
-        </div>
+        <StyledCardBodyHeader>
+          <StyledCardBodyHeaderName>
+            {name.charAt(0).toUpperCase() + name.slice(1)}
+          </StyledCardBodyHeaderName>
+          <StyledCardBodyHeaderType>
+            {typeOne === typeTwo ? typeOne : `${typeOne} / ${typeTwo}`}
+          </StyledCardBodyHeaderType>
+        </StyledCardBodyHeader>
       </StyledCardBody>
     </StyledCard>
   );
