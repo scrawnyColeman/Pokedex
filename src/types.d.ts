@@ -1,162 +1,162 @@
-interface sprites {
-  back_default: string | null;
-  back_female: string | null;
-  back_shiny: string | null;
-  back_shiny_female: string | null;
-  front_default: string | null;
-  front_female: string | null;
-  front_shiny: string | null;
-  front_shiny_female: string | null;
+interface Sprites {
+  back_default?: string;
+  back_female?: string;
+  back_shiny?: string;
+  back_shiny_female?: string;
+  front_default?: string;
+  front_female?: string;
+  front_shiny?: string;
+  front_shiny_female?: string;
   other: {
     dream_world: {
-      front_default: string | null;
-      front_female: string | null;
+      front_default?: string;
+      front_female?: string;
     };
     "official-artwork": {
-      front_default: string | null;
+      front_default?: string;
     };
   };
   versions: {
     "generation-i": {
       "red-blue": {
-        back_default: string | null;
-        back_gray: string | null;
-        front_default: string | null;
-        front_gray: string | null;
+        back_default?: string;
+        back_gray?: string;
+        front_default?: string;
+        front_gray?: string;
       };
       yellow: {
-        back_default: string | null;
-        back_gray: string | null;
-        front_default: string | null;
-        front_gray: string | null;
+        back_default?: string;
+        back_gray?: string;
+        front_default?: string;
+        front_gray?: string;
       };
     };
     "generation-ii": {
       crystal: {
-        back_default: string | null;
-        back_shiny: string | null;
-        front_default: string | null;
-        front_shiny: string | null;
+        back_default?: string;
+        back_shiny?: string;
+        front_default?: string;
+        front_shiny?: string;
       };
       gold: {
-        back_default: string | null;
-        back_shiny: string | null;
-        front_default: string | null;
-        front_shiny: string | null;
+        back_default?: string;
+        back_shiny?: string;
+        front_default?: string;
+        front_shiny?: string;
       };
       silver: {
-        back_default: string | null;
-        back_shiny: string | null;
-        front_default: string | null;
-        front_shiny: string | null;
+        back_default?: string;
+        back_shiny?: string;
+        front_default?: string;
+        front_shiny?: string;
       };
     };
     "generation-iii": {
       emerald: {
-        front_default: string | null;
-        front_shiny: string | null;
+        front_default?: string;
+        front_shiny?: string;
       };
       "firered-leafgreen": {
-        back_default: string | null;
-        back_shiny: string | null;
-        front_default: string | null;
-        front_shiny: string | null;
+        back_default?: string;
+        back_shiny?: string;
+        front_default?: string;
+        front_shiny?: string;
       };
       "ruby-sapphire": {
-        back_default: string | null;
-        back_shiny: string | null;
-        front_default: string | null;
-        front_shiny: string | null;
+        back_default?: string;
+        back_shiny?: string;
+        front_default?: string;
+        front_shiny?: string;
       };
     };
     "generation-iv": {
       "diamond-pearl": {
-        back_default: string | null;
-        back_female: null;
-        back_shiny: string | null;
-        back_shiny_female: null;
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        back_default?: string;
+        back_female?: string;
+        back_shiny?: string;
+        back_shiny_female?: string;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
       "heartgold-soulsilver": {
-        back_default: string | null;
-        back_female: null;
-        back_shiny: string | null;
-        back_shiny_female: null;
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        back_default?: string;
+        back_female?: string;
+        back_shiny?: string;
+        back_shiny_female?: string;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
       platinum: {
-        back_default: string | null;
-        back_female: null;
-        back_shiny: string | null;
-        back_shiny_female: null;
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        back_default?: string;
+        back_female?: string;
+        back_shiny?: string;
+        back_shiny_female?: string;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
     };
     "generation-v": {
       animated: {
-        back_default: string | null;
-        back_female: null;
-        back_shiny: string | null;
-        back_shiny_female: null;
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        back_default?: string;
+        back_female?: string;
+        back_shiny?: string;
+        back_shiny_female?: string;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
-      back_default: string | null;
-      back_female: null;
-      back_shiny: string | null;
-      back_shiny_female: null;
-      front_default: string | null;
-      front_female: null;
-      front_shiny: string | null;
-      front_shiny_female: null;
+      back_default?: string;
+      back_female?: string;
+      back_shiny?: string;
+      back_shiny_female?: string;
+      front_default?: string;
+      front_female?: string;
+      front_shiny?: string;
+      front_shiny_female?: string;
     };
     "generation-vi": {
       "omegaruby-alphasapphire": {
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
       "x-y": {
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
     };
     "generation-vii": {
       icons: {
-        front_default: string | null;
-        front_female: null;
+        front_default?: string;
+        front_female?: string;
       };
       "ultra-sun-ultra-moon": {
-        front_default: string | null;
-        front_female: null;
-        front_shiny: string | null;
-        front_shiny_female: null;
+        front_default?: string;
+        front_female?: string;
+        front_shiny?: string;
+        front_shiny_female?: string;
       };
     };
     "generation-viii": {
       icons: {
-        front_default: string | null;
-        front_female: null;
+        front_default?: string;
+        front_female?: string;
       };
     };
   };
 }
 
-interface stat {
+interface Stat {
   base_stat: number;
   effort: number;
   stat: {
@@ -165,7 +165,7 @@ interface stat {
   };
 }
 
-interface ability {
+interface Ability {
   ability: {
     name: string;
     url: string;
@@ -174,7 +174,7 @@ interface ability {
   slot: number;
 }
 
-interface type {
+interface Type {
   slot: number;
   type: {
     name: string;
@@ -182,16 +182,16 @@ interface type {
   };
 }
 
-interface species {
+interface Species {
   name: string;
   url: string;
 }
 
 interface PokemonVerbose {
-  species?: species;
+  species: Species;
   order: number;
-  types?: type[];
-  abilities?: ability[];
-  stats?: stat[];
-  sprites?: sprites;
+  types: Type[];
+  abilities: Ability[];
+  stats: Stat[];
+  sprites: Sprites;
 }
