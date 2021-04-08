@@ -14,17 +14,25 @@ export const StyledCard = styled.div`
     width: calc(100% - 0.75rem);
   }
   height: 50vh;
-  background-color: #eee;
+  background-color: #1e1e1e96;
   box-shadow: 0 0 5px 0 #1b1b23;
   margin-top: 1rem;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
   color: #eee;
+  position: relative;
+  top: 0;
+  &:hover {
+    top: -4px;
+    left: -4px;
+    box-shadow: 4px 4px 5px 0 #1b1b23;
+    cursor: pointer;
+  }
 `;
 export const StyledImg = styled.img`
   position: absolute;
-  top: calc(40% - 7.5rem);
+  top: calc(50% - 7.5rem);
   left: calc(50% - 7.5rem);
   height: 15rem;
   z-index: 10;
@@ -32,12 +40,12 @@ export const StyledImg = styled.img`
 export const StyledPokeball = styled.img`
   position: absolute;
   top: 0;
-  left: 40%;
+  left: -10%;
   width: 250px;
-  transform: rotate(10deg);
+  transform: rotate(150deg);
 `;
 export const StyledCardHead = styled.div`
-  height: 40%;
+  height: 50%;
   display: flex;
   justify-content: flex-end;
   align-item: flex-end;
@@ -45,10 +53,10 @@ export const StyledCardHead = styled.div`
   position: relative;
   background: linear-gradient(to right, ${(p: CardHeadProps) =>
     p.colorOne + ", " + p.colorTwo + ");"}
+  border-radius: 0 0 33% 33%;
 `;
 export const StyledCardBody = styled.div`
-  height: 60%;
-  background-color: #1e1e1e;
+  height: 50%;
   display: flex;
   justify-content: space-between;
   position: relative;
