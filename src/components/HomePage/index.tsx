@@ -7,7 +7,7 @@ import { HourGlassSpinner } from "../Spinner/style";
 let uuid = 999999;
 
 const HomePage = (): JSX.Element => {
-  const observer: any = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const observer: any = useRef() as any;
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
   const [genNumber, setGenNumber] = useState<number>(1);
   const [url, setUrl] = useState(
@@ -27,7 +27,7 @@ const HomePage = (): JSX.Element => {
             setUrl(hasMore);
           }
         },
-        { rootMargin: "-600px" }
+        { rootMargin: "-150px" }
       );
       if (node) observer.current.observe(node);
     },

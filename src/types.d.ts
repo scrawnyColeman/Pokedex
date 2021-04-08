@@ -32,12 +32,12 @@ interface Sprites extends Details {
       "ruby-sapphire": Partial<Details>;
     };
     "generation-iv": {
-      "diamond-pearl": Details;
-      "heartgold-soulsilver": Details;
-      platinum: Details;
+      "diamond-pearl": artial<Details>;
+      "heartgold-soulsilver": artial<Details>;
+      platinum: artial<Details>;
     };
     "generation-v": {
-      animated: Details;
+      animated: artial<Details>;
       back_default?: string;
       back_female?: string;
       back_shiny?: string;
