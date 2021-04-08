@@ -33,7 +33,7 @@ export default function usePokeFetch(url: string) {
             setError(true);
           })
       );
-    }, 5000);
+    }, 750);
     return () => abortController.abort();
   }, [url]);
 
