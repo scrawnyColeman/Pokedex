@@ -4,9 +4,12 @@ interface CardHeadProps {
   colorOne: string;
   colorTwo: string;
 }
+interface CardProps {
+  last: boolean;
+}
 
 export const StyledCard = styled.div`
-  width: calc(33.3% - 0.75rem);
+  width: ${(p: CardProps) => (p.last ? "100%" : "calc(33.3% - 0.75rem)")};
   @media (max-width: 1156px) {
     width: calc(50% - 0.75rem);
   }
@@ -14,7 +17,7 @@ export const StyledCard = styled.div`
     width: calc(100% - 0.75rem);
   }
   height: 50vh;
-  background-color: #1e1e1e96;
+  background: linear-gradient(to top, #50504a, #000);
   box-shadow: 0 0 5px 0 #1b1b23;
   margin-top: 1rem;
   border-radius: 1rem;

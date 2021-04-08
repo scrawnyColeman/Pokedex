@@ -189,7 +189,7 @@ interface Species {
 
 interface PokemonVerbose {
   species: Species;
-  order: number;
+  id: number;
   types: Type[];
   abilities: Ability[];
   stats: Stat[];

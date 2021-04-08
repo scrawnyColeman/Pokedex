@@ -1,96 +1,112 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import PokemonCard from "../PokemonCard";
-import Spinner from "../Spinner";
 import { StyledContainer } from "./style";
-import { generations } from "../../data/generations";
+import usePokeFetch from "../../hooks/usePokeFetch";
+import { HourGlassSpinner } from "../Spinner/style";
 
-type Pokemon = Species;
-type Generation = {
-  number?: number;
-  offset?: number;
-  limit?: number;
-};
 let uuid = 999999;
 
 const HomePage = (): JSX.Element => {
+  const observer: any = useRef();
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [genNumber, setGenNumber] = useState<number>(1);
+  const [url, setUrl] = useState(
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=24`
+  );
+  const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
 
-  const generation: Generation =
-    generations.find(gen => gen.number === genNumber) || {};
+  const withinGenerationLimit = () => true;
 
-  const offset = generation?.offset;
-  const limit = generation?.limit;
+  const lastPokemonRef = useCallback(
+    node => {
+      if (isLoading) return;
+      if (observer?.current) observer.current?.disconnect();
+      observer.current = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting && hasMore && withinGenerationLimit()) {
+            setUrl(hasMore);
+          }
+        },
+        { rootMargin: "-400px" }
+      );
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
 
   useEffect(() => {
-    const fetchRequiredPokemonData = async (): Promise<void> => {
-      setLoading(true);
-      const result = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
-      );
-      const pokedexListData = await result.json();
-      const { results } = pokedexListData;
-      const pokeList: Array<PokemonVerbose> = results.map(
-        async (poke: Pokemon) => {
-          const { url } = poke;
-          try {
-            const result = await fetch(url);
-            const pokedexData = await result.json();
-            const {
-              species,
-              order,
-              types,
-              abilities,
-              stats,
-              sprites
-            } = pokedexData;
-            return { species, order, types, abilities, stats, sprites };
-          } catch {
-            return {
-              species: null,
-              order: uuid++,
-              types: null,
-              abilities: null,
-              stats: null,
-              sprites: null
-            };
-          }
+    const fetchRequiredPokemonData = async () => {
+      const pokeList = pokemonUrls.map(async (pokeUrl: string) => {
+        try {
+          const result = await fetch(pokeUrl);
+          const pokedexData = await result.json();
+          const { species, id, types, abilities, stats, sprites } = pokedexData;
+          return { species, id, types, abilities, stats, sprites };
+        } catch {
+          return {
+            species: null,
+            id: uuid++,
+            types: null,
+            abilities: null,
+            stats: null,
+            sprites: null
+          };
         }
-      );
-      setPokemonData(await Promise.all(pokeList));
-      setLoading(false);
+      });
+      const list = await Promise.all(pokeList);
+      setPokemonData(prevPoke => [...prevPoke, ...list]);
     };
     fetchRequiredPokemonData();
-  }, [offset, limit]);
+  }, [pokemonUrls]);
 
   return (
     <>
       <StyledContainer>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <>
-            <div style={{ width: "100%" }}>
-              <button
-                type="button"
-                onClick={() => {
-                  if (genNumber < 8) {
-                    setGenNumber(genNumber + 1);
-                  } else {
-                    setGenNumber(1);
-                  }
-                }}
-              >
-                Next Generation
-              </button>
-              {genNumber}
+        <>
+          <div style={{ width: "100%" }}>
+            <button
+              type="button"
+              onClick={() => {
+                if (genNumber < 8) {
+                  setGenNumber(genNumber + 1);
+                } else {
+                  setGenNumber(1);
+                }
+              }}
+            >
+              Next Generation
+            </button>
+            {genNumber}
+          </div>
+          {pokemonData.map((pokemon, index) => {
+            if (pokemonData.length === index + 1) {
+              return (
+                <div
+                  style={{ height: "100%", width: "calc(33.3% - .75rem)" }}
+                  ref={lastPokemonRef}
+                  key={pokemon.id}
+                >
+                  <PokemonCard last pokemon={pokemon} key={pokemon.id} />
+                </div>
+              );
+            }
+            return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
+          })}
+          {isLoading && (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100px",
+                padding: "10px"
+              }}
+            >
+              <HourGlassSpinner />
             </div>
-            {pokemonData.map(pokemon => (
-              <PokemonCard pokemon={pokemon} key={pokemon.order} />
-            ))}
-          </>
-        )}
+          )}
+        </>
       </StyledContainer>
     </>
   );

@@ -14,10 +14,14 @@ import { typeColors } from "../../data/typeColors";
 
 type PokemonCardProps = {
   pokemon: PokemonVerbose;
+  last?: boolean;
 };
 
-const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
-  const { species, types, sprites } = pokemon;
+const PokemonCard = ({
+  pokemon,
+  last = false
+}: PokemonCardProps): JSX.Element => {
+  const { species, id, types, sprites } = pokemon;
   const { name } = species;
 
   const typeOne: string = types?.[0].type.name || "normal";
@@ -34,7 +38,7 @@ const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
     typeColors.find(color => color.name === typeTwo)?.color || "#A8A878";
 
   return (
-    <StyledCard>
+    <StyledCard last={last}>
       {sprites?.front_default && (
         <StyledImg
           src={sprites.other?.["official-artwork"].front_default}
@@ -47,7 +51,7 @@ const PokemonCard = ({ pokemon }: PokemonCardProps): JSX.Element => {
       <StyledCardBody>
         <StyledCardBodyHeader>
           <StyledCardBodyHeaderName>
-            {name.charAt(0).toUpperCase() + name.slice(1)}
+            {`${name.charAt(0).toUpperCase() + name.slice(1)}: ${id}`}
           </StyledCardBodyHeaderName>
           <StyledCardBodyHeaderType>
             {typeOne === typeTwo ? typeOne : `${typeOne} / ${typeTwo}`}
