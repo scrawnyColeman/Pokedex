@@ -1,117 +1,43 @@
-interface Sprites {
+interface Details {
   back_default?: string;
   back_female?: string;
   back_shiny?: string;
   back_shiny_female?: string;
+  back_gray?: string;
+  front_gray?: string;
   front_default?: string;
   front_female?: string;
   front_shiny?: string;
   front_shiny_female?: string;
+}
+
+interface Sprites extends Details {
   other: {
-    dream_world: {
-      front_default?: string;
-      front_female?: string;
-    };
-    "official-artwork": {
-      front_default?: string;
-    };
+    dream_world: Pick<Details, 'front_default' | 'front_female'>;
+    "official-artwork": Pick<Details, 'front_default'>;
   };
   versions: {
     "generation-i": {
-      "red-blue": {
-        back_default?: string;
-        back_gray?: string;
-        front_default?: string;
-        front_gray?: string;
-      };
-      yellow: {
-        back_default?: string;
-        back_gray?: string;
-        front_default?: string;
-        front_gray?: string;
-      };
+      "red-blue": Partial<Details>;
+      yellow: Partial<Details>;
     };
     "generation-ii": {
-      crystal: {
-        back_default?: string;
-        back_shiny?: string;
-        front_default?: string;
-        front_shiny?: string;
-      };
-      gold: {
-        back_default?: string;
-        back_shiny?: string;
-        front_default?: string;
-        front_shiny?: string;
-      };
-      silver: {
-        back_default?: string;
-        back_shiny?: string;
-        front_default?: string;
-        front_shiny?: string;
-      };
+      crystal: Partial<Details>;
+      gold: Partial<Details>;
+      silver: Partial<Details>;
     };
     "generation-iii": {
-      emerald: {
-        front_default?: string;
-        front_shiny?: string;
-      };
-      "firered-leafgreen": {
-        back_default?: string;
-        back_shiny?: string;
-        front_default?: string;
-        front_shiny?: string;
-      };
-      "ruby-sapphire": {
-        back_default?: string;
-        back_shiny?: string;
-        front_default?: string;
-        front_shiny?: string;
-      };
+      emerald: Pick<Details, 'front_default' | 'front_shiny'>;
+      "firered-leafgreen": Partial<Details>;
+      "ruby-sapphire": Partial<Details>;
     };
     "generation-iv": {
-      "diamond-pearl": {
-        back_default?: string;
-        back_female?: string;
-        back_shiny?: string;
-        back_shiny_female?: string;
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
-      "heartgold-soulsilver": {
-        back_default?: string;
-        back_female?: string;
-        back_shiny?: string;
-        back_shiny_female?: string;
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
-      platinum: {
-        back_default?: string;
-        back_female?: string;
-        back_shiny?: string;
-        back_shiny_female?: string;
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
+      "diamond-pearl": Details;
+      "heartgold-soulsilver": Details;
+      platinum: Details;
     };
     "generation-v": {
-      animated: {
-        back_default?: string;
-        back_female?: string;
-        back_shiny?: string;
-        back_shiny_female?: string;
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
+      animated: Details;
       back_default?: string;
       back_female?: string;
       back_shiny?: string;
@@ -122,36 +48,15 @@ interface Sprites {
       front_shiny_female?: string;
     };
     "generation-vi": {
-      "omegaruby-alphasapphire": {
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
-      "x-y": {
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
+      "omegaruby-alphasapphire": Partial<Details>;
+      "x-y": Partial<Details>;
     };
     "generation-vii": {
-      icons: {
-        front_default?: string;
-        front_female?: string;
-      };
-      "ultra-sun-ultra-moon": {
-        front_default?: string;
-        front_female?: string;
-        front_shiny?: string;
-        front_shiny_female?: string;
-      };
+      icons: Partial<Details>;
+      "ultra-sun-ultra-moon": Partial<Details>;
     };
     "generation-viii": {
-      icons: {
-        front_default?: string;
-        front_female?: string;
-      };
+      icons: Pick<Details, 'front_default' | 'front_female'>;
     };
   };
 }
