@@ -20,7 +20,7 @@ type PokemonCardProps = {
 const PokemonCard = forwardRef(
   ({ pokemon }: PokemonCardProps, ref: any): JSX.Element => {
     const history = useHistory();
-    const { species, id, types, sprites } = pokemon;
+    const { species, types, sprites } = pokemon;
     const { name } = species;
 
     const typeOne: string = types?.[0].type.name || "normal";
