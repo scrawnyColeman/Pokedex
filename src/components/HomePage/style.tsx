@@ -38,3 +38,12 @@ export const lastCardWrapper = styled.div`
     width: calc(100% - 0.75rem);
   }
 `;
+
+export const StyledSpinnerWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  padding: 10px;
+`;
