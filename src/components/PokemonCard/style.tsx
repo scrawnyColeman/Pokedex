@@ -66,18 +66,18 @@ export const StyledCardBodyHeader = styled.div`
   display: flex;
   width: 100%;
   height: 2rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   padding: 0.5rem;
   position: relative;
   top: calc(100% - 2rem - 1rem);
 `;
 export const StyledCardBodyHeaderName = styled.div`
-  width: 70%;
-  font-size: 1.5rem;
+  width: 80%;
+  font-size: 1.75rem;
   font-weight: 500;
 `;
 export const StyledCardBodyHeaderType = styled.div`
-  width: 30%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
