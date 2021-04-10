@@ -1,12 +1,10 @@
 import React from "react";
-import { Pokeball, PokeballWrapper, PokeballContainer } from "./style";
+import { Pokeball, PokeballWrapper } from "./style";
 
 const HourGlass = () => (
-  <PokeballContainer>
-    <PokeballWrapper>
-      <Pokeball />
-    </PokeballWrapper>
-  </PokeballContainer>
+  <PokeballWrapper>
+    <Pokeball />
+  </PokeballWrapper>
 );
 
 export default HourGlass;

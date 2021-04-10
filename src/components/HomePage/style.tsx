@@ -18,3 +18,9 @@ export const lastCardWrapper = styled.div`
     width: calc(100% - 0.75rem);
   }
 `;
+export const PokeballContainer = styled.div`
+  position: relative;
+  height: 48px;
+  width: 100%;
+  padding: 1rem;
+`;
