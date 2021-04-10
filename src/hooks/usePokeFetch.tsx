@@ -12,28 +12,26 @@ export default function usePokeFetch(url: string) {
   }, [url]);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(false);
     const abortController = new AbortController();
     const signal = abortController.signal;
-    setTimeout(() => {
-      fetch(url, { signal: abortController.signal }).then(res =>
-        res
-          .json()
-          .then(res => {
-            console.log(res);
-            setPokemon((prevPokemon: Species[]) => {
-              return [...prevPokemon, ...res.results.map(p => p.url)];
-            });
-            setHasMore(res.next);
-            setIsLoading(false);
-          })
-          .catch(_ => {
-            if (signal.aborted) return;
-            setError(true);
-          })
-      );
-    }, 250);
+    const effect = async () => {
+      setIsLoading(true);
+      setError(false);
+      try {
+        const result = await fetch(url, { signal: abortController.signal });
+        const res = await result.json();
+        setPokemon((prevPokemon: Species[]) => [
+          ...prevPokemon,
+          ...res.results.map(p => p.url)
+        ]);
+        setHasMore(res.next);
+        setIsLoading(false);
+      } catch (error) {
+        if (signal.aborted) return;
+        setError(true);
+      }
+    };
+    effect();
     return () => abortController.abort();
   }, [url]);
 

@@ -1,6 +1,10 @@
 import React from "react";
-import { HourGlassSpinner } from "./style";
+import { Pokeball, PokeballWrapper } from "./style";
 
-const HourGlass = () => <HourGlassSpinner />;
+const HourGlass = () => (
+  <PokeballWrapper>
+    <Pokeball />
+  </PokeballWrapper>
+);
 
 export default HourGlass;

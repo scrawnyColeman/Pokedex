@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import {
   StyledCard,
+  StyledIDWrapper,
   StyledImg,
   StyledCardHead,
   StyledCardBody,
@@ -20,7 +21,7 @@ type PokemonCardProps = {
 const PokemonCard = forwardRef(
   ({ pokemon }: PokemonCardProps, ref: any): JSX.Element => {
     const history = useHistory();
-    const { species, types, sprites } = pokemon;
+    const { species, types, sprites, id } = pokemon;
     const { name } = species;
 
     const typeOne: string = types?.[0].type.name || "normal";
@@ -42,12 +43,13 @@ const PokemonCard = forwardRef(
     return (
       <>
         <StyledCard ref={ref} onClick={() => history.push(`/pokemon/${name}`)}>
-          {sprites?.front_default && (
+          {sprites?.other?.["official-artwork"] && (
             <StyledImg
-              src={sprites.other?.["official-artwork"].front_default}
+              src={sprites.other["official-artwork"].front_default}
               alt={species?.name}
             />
           )}
+          <StyledIDWrapper>{`#${id}`}</StyledIDWrapper>
           <StyledCardHead colorOne={colorOne} colorTwo={colorTwo}>
             <StyledPokeball src={pokeball} alt="pokeball" />
           </StyledCardHead>
