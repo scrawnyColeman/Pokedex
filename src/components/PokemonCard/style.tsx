@@ -6,17 +6,17 @@ interface CardHeadProps {
 }
 
 export const StyledCard = styled.div`
-  width: calc(33.3% - 0.75rem);
+  width: calc(33.3% - 1.5rem);
   @media (max-width: 1156px) {
-    width: calc(50% - 0.75rem);
+    width: calc(50% - 1.5rem);
   }
   @media (max-width: 768px) {
-    width: calc(100% - 0.75rem);
+    width: calc(100% - 1.5rem);
   }
   height: 50vh;
   background: linear-gradient(to top, #50504a, #000);
   box-shadow: 0 0 5px 0 #1b1b23;
-  margin: 0.5rem auto;
+  margin: 0.75rem;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
