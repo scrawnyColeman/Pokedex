@@ -10,7 +10,7 @@ import {
   StyledCardBodyHeaderType
 } from "./style";
 import pokeball from "../../assets/images/pokeball.svg";
-import { typeColors } from "../../data/typeColors";
+import { types as pokemonTypes } from "../../data/types";
 import { useHistory } from "react-router-dom";
 
 type PokemonCardProps = {
@@ -20,22 +20,25 @@ type PokemonCardProps = {
 const PokemonCard = forwardRef(
   ({ pokemon }: PokemonCardProps, ref: any): JSX.Element => {
     const history = useHistory();
-    const { species, id, types, sprites } = pokemon;
+    const { species, types, sprites } = pokemon;
     const { name } = species;
 
     const typeOne: string = types?.[0].type.name || "normal";
-    const colorOne: string =
-      typeColors.find(color => color.name === typeOne)?.color || "#A8A878";
     let typeTwo: string;
-
     if (types?.length === 2) {
       typeTwo = types[1].type.name;
     } else {
       typeTwo = typeOne;
     }
-    const colorTwo: string =
-      typeColors.find(color => color.name === typeTwo)?.color || "#A8A878";
 
+    const typeOneObject = pokemonTypes.find(color => color.name === typeOne);
+    const typeTwoObject = pokemonTypes.find(color => color.name === typeTwo);
+
+    const colorOne: string = typeOneObject?.color;
+    const colorTwo: string = typeTwoObject?.color;
+
+    const iconOne = typeOneObject?.logo;
+    const iconTwo = typeTwoObject?.logo;
     return (
       <>
         <StyledCard ref={ref} onClick={() => history.push(`/pokemon/${name}`)}>
@@ -51,10 +54,16 @@ const PokemonCard = forwardRef(
           <StyledCardBody>
             <StyledCardBodyHeader>
               <StyledCardBodyHeaderName>
-                {`${name.charAt(0).toUpperCase() + name.slice(1)}: ${id}`}
+                {name.charAt(0).toUpperCase() + name.slice(1)}
               </StyledCardBodyHeaderName>
               <StyledCardBodyHeaderType>
-                {typeOne === typeTwo ? typeOne : `${typeOne} / ${typeTwo}`}
+                {typeOne === typeTwo ? (
+                  <div>{iconOne}</div>
+                ) : (
+                  <div>
+                    {iconOne} {iconTwo}
+                  </div>
+                )}
               </StyledCardBodyHeaderType>
             </StyledCardBodyHeader>
           </StyledCardBody>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import PokemonCard from "../PokemonCard";
-import { StyledContainer, StyledBtn } from "./style";
+import { StyledContainer, StyledBtn, StyledSpinnerWrapper } from "./style";
 import usePokeFetch from "../../hooks/usePokeFetch";
 import { HourGlassSpinner } from "../Spinner/style";
 
@@ -11,7 +11,7 @@ const HomePage = (): JSX.Element => {
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
   const [genNumber, setGenNumber] = useState<number>(1);
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=18`
   );
   const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
 
@@ -27,7 +27,7 @@ const HomePage = (): JSX.Element => {
             setUrl(hasMore);
           }
         },
-        { rootMargin: "-150px" }
+        { rootMargin: "-200px" }
       );
       if (node) observer.current.observe(node);
     },
@@ -76,7 +76,6 @@ const HomePage = (): JSX.Element => {
             >
               Next Generation
             </StyledBtn>
-            {genNumber}
           </div>
           {pokemonData.map((pokemon, index) => {
             if (pokemonData.length === index + 1) {
@@ -90,20 +89,9 @@ const HomePage = (): JSX.Element => {
             }
             return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
           })}
-          {isLoading && (
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100px",
-                padding: "10px"
-              }}
-            >
-              <HourGlassSpinner />
-            </div>
-          )}
+          <StyledSpinnerWrapper>
+            {isLoading && <HourGlassSpinner />}
+          </StyledSpinnerWrapper>
         </>
       </StyledContainer>
     </>
