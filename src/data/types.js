@@ -16,7 +16,6 @@ import { ReactComponent as IceSVG } from "../assets/images/icons/ice.svg";
 import { ReactComponent as DragonSVG } from "../assets/images/icons/dragon.svg";
 import { ReactComponent as DarkSVG } from "../assets/images/icons/dark.svg";
 import { ReactComponent as FairySVG } from "../assets/images/icons/fairy.svg";
-// import { ReactComponent as ShadowSVG } from "../assets/images/icons/shadow.svg";
 
 export const types = [
   {
