@@ -18,7 +18,7 @@ export const PokeballContainer = styled.div`
 export const PokeballWrapper = styled.div`
   position: absolute;
   top: 1rem;
-  left: 50%;
+  left: calc(50% - 24px);
   transform: translateX(-50%) translateY(-50%);
 `;
 export const Pokeball = styled.div`
