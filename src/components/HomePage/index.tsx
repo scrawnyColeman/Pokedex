@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import PokemonCard from "../PokemonCard";
-import { StyledContainer } from "./style";
+import { StyledContainer, PokeballContainer } from "./style";
 import usePokeFetch from "../../hooks/usePokeFetch";
 import HourGlass from "../Spinner";
 
@@ -9,20 +9,25 @@ let uuid = 999999;
 const HomePage = (): JSX.Element => {
   const observer: any = useRef() as any;
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
-  const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12`
+  const [isPokemonInfoLoading, setIsPokemonInfoLoading] = useState<boolean>(
+    false
   );
-  const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
-
-  const withinGenerationLimit = () => true;
+  const [url, setUrl] = useState(
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=54`
+  );
+  const {
+    isLoading: isPokemonListLoading,
+    pokemon: pokemonUrls,
+    hasMore
+  } = usePokeFetch(url);
 
   const lastPokemonRef = useCallback(
     node => {
-      if (isLoading) return;
+      if (isPokemonListLoading) return;
       if (observer?.current) observer.current?.disconnect();
       observer.current = new IntersectionObserver(
         entries => {
-          if (entries[0].isIntersecting && hasMore && withinGenerationLimit()) {
+          if (entries[0].isIntersecting && hasMore) {
             setUrl(hasMore);
           }
         },
@@ -30,11 +35,12 @@ const HomePage = (): JSX.Element => {
       );
       if (node) observer.current.observe(node);
     },
-    [isLoading, hasMore]
+    [isPokemonListLoading, hasMore]
   );
 
   useEffect(() => {
     const fetchRequiredPokemonData = async () => {
+      setIsPokemonInfoLoading(true);
       const pokeList = pokemonUrls.map(async (pokeUrl: string) => {
         try {
           const result = await fetch(pokeUrl);
@@ -54,6 +60,7 @@ const HomePage = (): JSX.Element => {
       });
       const list = await Promise.all(pokeList);
       setPokemonData(prevPoke => [...prevPoke, ...list]);
+      setIsPokemonInfoLoading(false);
     };
     fetchRequiredPokemonData();
   }, [pokemonUrls]);
@@ -72,7 +79,9 @@ const HomePage = (): JSX.Element => {
         }
         return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
       })}
-      {isLoading && <HourGlass />}
+      <PokeballContainer>
+        {(isPokemonInfoLoading || isPokemonListLoading) && <HourGlass />}
+      </PokeballContainer>
     </StyledContainer>
   );
 };

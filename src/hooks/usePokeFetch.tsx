@@ -20,12 +20,10 @@ export default function usePokeFetch(url: string) {
       try {
         const result = await fetch(url, { signal: abortController.signal });
         const res = await result.json();
-        setPokemon((prevPokemon: Species[]) => {
-          if (prevPokemon.includes(res.results[0])) {
-            return [...prevPokemon];
-          }
-          return [...prevPokemon, ...res.results.map(p => p.url)];
-        });
+        setPokemon((prevPokemon: Species[]) => [
+          ...prevPokemon,
+          ...res.results.map(p => p.url)
+        ]);
         setHasMore(res.next);
         setIsLoading(false);
       } catch (error) {
