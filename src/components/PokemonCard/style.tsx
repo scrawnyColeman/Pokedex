@@ -76,22 +76,21 @@ export const StyledCardBody = styled.div`
 
 export const StyledCardBodyHeader = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 2rem;
+  height: 1.75rem;
   letter-spacing: 2px;
   padding: 0.5rem;
   position: relative;
-  top: calc(100% - 2rem - 1rem);
+  top: calc(100% - 1.75rem - 1rem);
 `;
 export const StyledCardBodyHeaderName = styled.div`
-  width: 80%;
   font-size: 1.75rem;
   font-weight: 500;
 `;
 export const StyledCardBodyHeaderType = styled.div`
-  width: 20%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 `;
 export const StyledCardBodyBottom = styled.div``;
