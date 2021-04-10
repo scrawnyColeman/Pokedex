@@ -5,11 +5,17 @@ export const StyledContainer = styled.div`
   margin: 0 auto;
 `;
 export const StyledHeader = styled.div`
-  line-height: 72px;
-  letter-spacing: 2px;
-  font-size: 2rem;
-  text-align: center;
-  color: #141414;
-  font-weight: 600;
-  background-image: linear-gradient(to-right, #bb0000, red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+`;
+export const StyledLogo = styled.img`
+  height: 144px;
+  @media (max-width: 1156px) {
+    height: 96px;
+  }
+  @media (max-width: 768px) {
+    height: 64px;
+  }
 `;
