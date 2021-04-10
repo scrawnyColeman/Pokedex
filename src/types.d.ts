@@ -156,24 +156,6 @@ interface Sprites {
   };
 }
 
-interface Stat {
-  base_stat: number;
-  effort: number;
-  stat: {
-    name: string;
-    url: string;
-  };
-}
-
-interface Ability {
-  ability: {
-    name: string;
-    url: string;
-  };
-  is_hidden: boolean;
-  slot: number;
-}
-
 interface Type {
   slot: number;
   type: {
@@ -191,7 +173,5 @@ interface PokemonVerbose {
   species: Species;
   id: number;
   types: Type[];
-  abilities: Ability[];
-  stats: Stat[];
   sprites: Sprites;
 }

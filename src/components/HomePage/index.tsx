@@ -45,15 +45,13 @@ const HomePage = (): JSX.Element => {
         try {
           const result = await fetch(pokeUrl);
           const pokedexData = await result.json();
-          const { species, id, types, abilities, stats, sprites } = pokedexData;
-          return { species, id, types, abilities, stats, sprites };
+          const { species, id, types, sprites } = pokedexData;
+          return { species, id, types, sprites };
         } catch {
           return {
             species: null,
             id: uuid++,
             types: null,
-            abilities: null,
-            stats: null,
             sprites: null
           };
         }
