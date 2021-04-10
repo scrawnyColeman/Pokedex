@@ -30,6 +30,18 @@ export const StyledCard = styled.div`
     cursor: pointer;
   }
 `;
+export const StyledIDWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: calc(100% - 1rem);
+  font-size: 1.75rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  text-align: right;
+  letter-spacing: 2px;
+  color: #000;
+`;
 export const StyledImg = styled.img`
   position: absolute;
   top: calc(50% - 7.5rem);
