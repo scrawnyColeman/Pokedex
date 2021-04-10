@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import PokemonCard from "../PokemonCard";
-import { StyledContainer, StyledBtn, StyledSpinnerWrapper } from "./style";
+import { StyledContainer } from "./style";
 import usePokeFetch from "../../hooks/usePokeFetch";
-import { HourGlassSpinner } from "../Spinner/style";
+import HourGlass from "../Spinner";
 
 let uuid = 999999;
 
 const HomePage = (): JSX.Element => {
   const observer: any = useRef() as any;
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
-  const [genNumber, setGenNumber] = useState<number>(1);
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=18`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15`
   );
   const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
 
@@ -27,7 +26,7 @@ const HomePage = (): JSX.Element => {
             setUrl(hasMore);
           }
         },
-        { rootMargin: "-200px" }
+        { rootMargin: "-50px" }
       );
       if (node) observer.current.observe(node);
     },
@@ -60,41 +59,21 @@ const HomePage = (): JSX.Element => {
   }, [pokemonUrls]);
 
   return (
-    <>
-      <StyledContainer>
-        <>
-          <div style={{ width: "100%" }}>
-            <StyledBtn
-              type="button"
-              onClick={() => {
-                if (genNumber < 8) {
-                  setGenNumber(genNumber + 1);
-                } else {
-                  setGenNumber(1);
-                }
-              }}
-            >
-              Next Generation
-            </StyledBtn>
-          </div>
-          {pokemonData.map((pokemon, index) => {
-            if (pokemonData.length === index + 1) {
-              return (
-                <PokemonCard
-                  pokemon={pokemon}
-                  key={pokemon.id}
-                  ref={lastPokemonRef}
-                />
-              );
-            }
-            return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
-          })}
-          <StyledSpinnerWrapper>
-            {isLoading && <HourGlassSpinner />}
-          </StyledSpinnerWrapper>
-        </>
-      </StyledContainer>
-    </>
+    <StyledContainer>
+      {pokemonData.map((pokemon, index) => {
+        if (pokemonData.length === index + 1) {
+          return (
+            <PokemonCard
+              pokemon={pokemon}
+              key={pokemon.id}
+              ref={lastPokemonRef}
+            />
+          );
+        }
+        return <PokemonCard pokemon={pokemon} key={pokemon.id} />;
+      })}
+      {isLoading && <HourGlass />}
+    </StyledContainer>
   );
 };
 
