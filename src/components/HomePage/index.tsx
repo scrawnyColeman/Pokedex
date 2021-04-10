@@ -10,7 +10,7 @@ const HomePage = (): JSX.Element => {
   const observer: any = useRef() as any;
   const [pokemonData, setPokemonData] = useState<PokemonVerbose[]>([]);
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12`
   );
   const { isLoading, pokemon: pokemonUrls, hasMore } = usePokeFetch(url);
 
