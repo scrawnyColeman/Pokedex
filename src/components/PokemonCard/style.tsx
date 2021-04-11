@@ -24,6 +24,7 @@ export const StyledCard = styled(Link)`
   color: #eee;
   position: relative;
   top: 0;
+  text-decoration: none;
   &:hover {
     top: -4px;
     left: -4px;
@@ -86,7 +87,7 @@ export const StyledCardBodyHeader = styled.div`
   position: relative;
   top: calc(100% - 1.75rem - 1rem);
 `;
-export const StyledCardBodyHeaderName = styled.div`
+export const StyledCardBodyHeaderName = styled.h1`
   font-size: 1.75rem;
   font-weight: 500;
 `;
