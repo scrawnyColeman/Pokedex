@@ -9,7 +9,7 @@ const Routing = (): JSX.Element => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/pokemon/:name" component={PokemonProfile} />
+        <Route exact path="/pokemon/:id" component={PokemonProfile} />
         <Route exact path={["/pokedex", "/"]} component={HomePage} />
         <Route exact path="/pagenotfound" component={PageNotFound} />
         <Redirect to="/pagenotfound" />
