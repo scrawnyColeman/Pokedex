@@ -5,9 +5,12 @@ import {
   StyledProfileCard,
   StyledProfileDisplayImgWrapper,
   StyledInfoCard,
-  StyledProfileName
+  StyledProfileName,
+  StyledProfileStatsWrapper
 } from "./style";
 import { types as pokemonTypes } from "../../data/types";
+import { PokeballContainer } from "../HomePage/style";
+import HourGlass from "../Spinner";
 
 const PokemonProfile = (): JSX.Element => {
   const [data, setData] = useState({
@@ -20,7 +23,7 @@ const PokemonProfile = (): JSX.Element => {
   const params: any = useParams();
   const pokeId = params.id;
 
-  // const stats = data?.stats;
+  const stats = data?.stats;
   const name = data?.species?.name;
   const sprites = data?.sprites;
 
@@ -38,15 +41,15 @@ const PokemonProfile = (): JSX.Element => {
   const colorOne: string = typeOneObject?.color;
   const colorTwo: string = typeTwoObject?.color;
 
-  // const generateStats = () => {
-  //   if (!hasDataLoaded) {
-  //     return;
-  //   }
-  //   return stats.map(stat => ({
-  //     name: stat.stat.name,
-  //     stat: stat.base_stat
-  //   }));
-  // };
+  const generateStats = () => {
+    if (!hasDataLoaded) {
+      return;
+    }
+    return stats.map(stat => ({
+      name: stat.stat.name.replace("special-", "SP."),
+      stat: stat.base_stat
+    }));
+  };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -72,11 +75,21 @@ const PokemonProfile = (): JSX.Element => {
           alt={name}
         />
         <StyledProfileName>{data.species.name.toUpperCase()}</StyledProfileName>
+        <StyledProfileStatsWrapper>
+          {generateStats().map(pokeStat => {
+            const { name, stat } = pokeStat;
+            return (
+              <div>
+                {name.toUpperCase()}: {stat}
+              </div>
+            );
+          })}
+        </StyledProfileStatsWrapper>
       </StyledProfileCard>
       <StyledInfoCard>Hello</StyledInfoCard>
     </StyledContainer>
   ) : (
-    <div />
+    <PokeballContainer>{hasDataLoaded && <HourGlass />}</PokeballContainer>
   );
 };
 
