@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import {
   StyledContainer,
   StyledProfileCard,
-  StyledProfileStatsWrapper,
   StyledProfileDisplayImgWrapper,
   StyledInfoCard
 } from "./style";
@@ -20,7 +19,7 @@ const PokemonProfile = (): JSX.Element => {
   const params: any = useParams();
   const pokeId = params.id;
 
-  const stats = data?.stats;
+  // const stats = data?.stats;
   const name = data?.species?.name;
   const sprites = data?.sprites;
 
@@ -38,15 +37,15 @@ const PokemonProfile = (): JSX.Element => {
   const colorOne: string = typeOneObject?.color;
   const colorTwo: string = typeTwoObject?.color;
 
-  const generateStats = () => {
-    if (!hasDataLoaded) {
-      return;
-    }
-    return stats.map(stat => ({
-      name: stat.stat.name,
-      stat: stat.base_stat
-    }));
-  };
+  // const generateStats = () => {
+  //   if (!hasDataLoaded) {
+  //     return;
+  //   }
+  //   return stats.map(stat => ({
+  //     name: stat.stat.name,
+  //     stat: stat.base_stat
+  //   }));
+  // };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -65,7 +64,7 @@ const PokemonProfile = (): JSX.Element => {
     return () => abortController.abort();
   }, [pokeId]);
 
-  return (
+  return hasDataLoaded ? (
     <StyledContainer>
       <StyledProfileCard colorOne={colorOne} colorTwo={colorTwo}>
         <StyledProfileDisplayImgWrapper
@@ -75,6 +74,8 @@ const PokemonProfile = (): JSX.Element => {
       </StyledProfileCard>
       <StyledInfoCard>Hello</StyledInfoCard>
     </StyledContainer>
+  ) : (
+    <div />
   );
 };
 
