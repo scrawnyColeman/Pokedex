@@ -4,7 +4,8 @@ import {
   StyledContainer,
   StyledProfileCard,
   StyledProfileDisplayImgWrapper,
-  StyledInfoCard
+  StyledInfoCard,
+  StyledProfileName
 } from "./style";
 import { types as pokemonTypes } from "../../data/types";
 
@@ -56,7 +57,6 @@ const PokemonProfile = (): JSX.Element => {
         { signal }
       );
       const response = await result.json();
-      console.log(response);
       setData(response);
       setHasDataLoaded(true);
     };
@@ -68,9 +68,10 @@ const PokemonProfile = (): JSX.Element => {
     <StyledContainer>
       <StyledProfileCard colorOne={colorOne} colorTwo={colorTwo}>
         <StyledProfileDisplayImgWrapper
-          src={sprites?.other?.dream_world?.front_default}
+          src={sprites?.other?.["official-artwork"]?.front_default}
           alt={name}
         />
+        <StyledProfileName>{data.species.name.toUpperCase()}</StyledProfileName>
       </StyledProfileCard>
       <StyledInfoCard>Hello</StyledInfoCard>
     </StyledContainer>
