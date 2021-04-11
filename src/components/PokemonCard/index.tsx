@@ -39,7 +39,7 @@ const PokemonCard = forwardRef(
     const iconOne = typeOneObject?.logo;
     const iconTwo = typeTwoObject?.logo;
     return (
-      <StyledCard ref={ref} to={`/pokemon/${id}`}>
+      <StyledCard ref={ref} to={`/pokemon/${id}`} aria-label="pokemon-card">
         {sprites?.other?.["official-artwork"] && (
           <StyledImg
             src={sprites.other["official-artwork"].front_default}

@@ -74,7 +74,7 @@ const PokemonProfile = (): JSX.Element => {
 
   return hasDataLoaded ? (
     <>
-      <Link to="/">
+      <Link to="/" aria-label="back-button">
         <StyledBackBtn src={dex} alt="dex" />
       </Link>
       <StyledContainer>
