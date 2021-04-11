@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-interface CardHeadProps {
-  colorOne: string;
-  colorTwo: string;
-}
-
 export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -12,6 +7,17 @@ export const StyledContainer = styled.div`
     flex-direction: column;
   }
   align-items: center;
+  position: relative;
+`;
+export const StyledBackBtn = styled.img`
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 2rem;
+  width: 80px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledProfileCard = styled.div`
@@ -28,16 +34,23 @@ export const StyledProfileCard = styled.div`
   border-radius: 1rem;
   color: #eee;
   border: 1rem solid #ffcb05;
-  background: linear-gradient(
-      to right,
-      ${(p: CardHeadProps) => p.colorOne + ", " + p.colorTwo}
-    )
-    border-box;
+  background: #00000061;
   box-shadow: 5px 5px 5px -4px #1e1e1e;
 `;
 export const StyledInfoCard = styled.div`
+  width: 50%;
+  height: 70vh;
   border-radius: 1rem;
   color: #eee;
+  border: 1rem solid #ffcb05;
+  background: #00000061;
+  box-shadow: 5px 5px 5px -4px #1e1e1e;
+  overflow: hidden;
+  @media (max-width: 1156px) {
+    width: 80%;
+    height: 40vh;
+    margin-top: 1rem;
+  }
 `;
 export const StyledProfileDisplayImgWrapper = styled.img`
   border-radius: 0.25rem;
