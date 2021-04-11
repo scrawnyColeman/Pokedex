@@ -104,7 +104,7 @@ const PokemonProfile = (): JSX.Element => {
           </StyledProfileStatsWrapper>
         </StyledProfileCard>
         <StyledInfoCard>
-          <ProfileInformation moves={moves} stats={generateStats()} />
+          <ProfileInformation moves={moves} />
         </StyledInfoCard>
       </StyledContainer>
     </>

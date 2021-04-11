@@ -1,47 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledProfileInformationWrapper,
   StyledProfileInformationBody,
   StyledProfileInformationHeader,
   StyledProfileInformationMoveType
 } from "./style";
+import Move from "../Move";
 
-const ProfileInformation = ({ moves, stats }) => {
-  const [activeMove, setActiveMove] = useState<string>("learnable");
-  const machineMoves = moves.filter(
-    mv => mv.version_group_details[0].level_learned_at === 0
+const ProfileInformation = ({ moves }) => {
+  const learnableMoves = moves.filter(
+    mv => mv.version_group_details[0].level_learned_at !== 0
   );
-  const learnableMoves = moves.filter(mv => machineMoves.indexOf(mv) < 0);
-
-  console.log({ moves });
-  console.log({ stats });
+  const sortedMoves = learnableMoves.sort(
+    (a, b) =>
+      a.version_group_details[0].level_learned_at -
+      b.version_group_details[0].level_learned_at
+  );
   return (
     <StyledProfileInformationWrapper>
       <StyledProfileInformationHeader>
-        <StyledProfileInformationMoveType
-          active={activeMove === "learnable"}
-          onClick={() => setActiveMove("learnable")}
-        >
+        <StyledProfileInformationMoveType>
           Learnable Moves
-        </StyledProfileInformationMoveType>
-        <StyledProfileInformationMoveType
-          active={activeMove === "machine"}
-          onClick={() => setActiveMove("machine")}
-        >
-          Machine Moves
         </StyledProfileInformationMoveType>
       </StyledProfileInformationHeader>
       <StyledProfileInformationBody>
-        {activeMove === "machine" &&
-          machineMoves.map((mv: any) => (
-            <div key={mv.move.name}>{mv.move.name}</div>
-          ))}
-        {activeMove === "learnable" &&
-          learnableMoves.map((mv: any) => (
-            <div
-              key={mv.move.name}
-            >{`${mv.move.name}: ${mv.version_group_details[0].level_learned_at}`}</div>
-          ))}
+        {sortedMoves.map((mv: any) => (
+          <Move
+            keyName={mv.move.name}
+            move={mv.move.name}
+            level={mv.version_group_details[0].level_learned_at}
+          />
+        ))}
       </StyledProfileInformationBody>
     </StyledProfileInformationWrapper>
   );
