@@ -12,6 +12,7 @@ import {
 } from "./style";
 import pokeball from "../../assets/images/pokeball.svg";
 import { types as pokemonTypes } from "../../data/types";
+import { capitalizeFirstLetter } from "../../utils";
 
 type PokemonCardProps = {
   pokemon: PokemonVerbose;
@@ -53,7 +54,7 @@ const PokemonCard = forwardRef(
         <StyledCardBody>
           <StyledCardBodyHeader>
             <StyledCardBodyHeaderName>
-              {name.charAt(0).toUpperCase() + name.slice(1)}
+              {capitalizeFirstLetter(name)}
             </StyledCardBodyHeaderName>
             <StyledCardBodyHeaderType>
               {typeOne === typeTwo ? (
