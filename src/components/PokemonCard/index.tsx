@@ -42,7 +42,7 @@ const PokemonCard = forwardRef(
     const iconTwo = typeTwoObject?.logo;
     return (
       <>
-        <StyledCard ref={ref} onClick={() => history.push(`/pokemon/${name}`)}>
+        <StyledCard ref={ref} onClick={() => history.push(`/pokemon/${id}`)}>
           {sprites?.other?.["official-artwork"] && (
             <StyledImg
               src={sprites.other["official-artwork"].front_default}
