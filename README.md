@@ -1,6 +1,6 @@
 <h1 align="center">Pokedex Application</h1>
 
-<p align="center">This UI was built using React and Typescript. The current unit testing is done using Jest & Testing Library. It is deployed <a href="pokedex-ts.co.uk">here</a>, utilising vercel.</p>
+<p align="center">This UI was built using React and Typescript. The current unit testing is done using Jest & Testing Library. It is deployed <a href="https://pokedex-ts.co.uk">here</a>, utilising vercel.</p>
 
 <div align="center">
     <code>
