@@ -18,4 +18,4 @@
 </div>
 <br />
 
-![Gif of functionality](./pokemon.gif)
+![Gif of functionality](./pokedex.gif)
