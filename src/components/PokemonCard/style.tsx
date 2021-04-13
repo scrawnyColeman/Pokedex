@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 interface CardHeadProps {
   colorOne: string;
   colorTwo: string;
 }
 
-export const StyledCard = styled.div`
+export const StyledCard = styled(Link)`
   width: calc(33.3% - 1.5rem);
   @media (max-width: 1156px) {
     width: calc(50% - 1.5rem);
@@ -23,6 +24,7 @@ export const StyledCard = styled.div`
   color: #eee;
   position: relative;
   top: 0;
+  text-decoration: none;
   &:hover {
     top: -4px;
     left: -4px;
@@ -85,7 +87,7 @@ export const StyledCardBodyHeader = styled.div`
   position: relative;
   top: calc(100% - 1.75rem - 1rem);
 `;
-export const StyledCardBodyHeaderName = styled.div`
+export const StyledCardBodyHeaderName = styled.h1`
   font-size: 1.75rem;
   font-weight: 500;
 `;

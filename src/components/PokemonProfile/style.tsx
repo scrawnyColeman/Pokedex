@@ -53,7 +53,7 @@ export const StyledInfoCard = styled.div`
   border: 1rem solid #ffcb05;
   @media (max-width: 1156px) {
     width: 80%;
-    margin-top: 1rem;
+    margin: 1rem auto;
     border: 4px solid #ffcb05;
     font-size: 1rem;
   }
@@ -64,7 +64,7 @@ export const StyledProfileDisplayImgWrapper = styled.img`
     height: 75%;
   }
 `;
-export const StyledProfileName = styled.div`
+export const StyledProfileName = styled.h2`
   letter-spacing: 2px;
   font-size: 1.5rem;
   @media (min-width: 1156px) {
@@ -77,7 +77,7 @@ export const StyledProfileStatsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 75%;
-  margin: 0 auto;
+  margin: 10px auto;
   @media (max-width: 1156px) {
     display: none;
   }

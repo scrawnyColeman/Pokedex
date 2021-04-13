@@ -12,7 +12,7 @@ import {
 } from "./style";
 import pokeball from "../../assets/images/pokeball.svg";
 import { types as pokemonTypes } from "../../data/types";
-import { useHistory } from "react-router-dom";
+import { capitalizeFirstLetter } from "../../utils";
 
 type PokemonCardProps = {
   pokemon: PokemonVerbose;
@@ -20,7 +20,6 @@ type PokemonCardProps = {
 
 const PokemonCard = forwardRef(
   ({ pokemon }: PokemonCardProps, ref: any): JSX.Element => {
-    const history = useHistory();
     const { species, types, sprites, id } = pokemon;
     const { name } = species;
 
@@ -41,36 +40,34 @@ const PokemonCard = forwardRef(
     const iconOne = typeOneObject?.logo;
     const iconTwo = typeTwoObject?.logo;
     return (
-      <>
-        <StyledCard ref={ref} onClick={() => history.push(`/pokemon/${id}`)}>
-          {sprites?.other?.["official-artwork"] && (
-            <StyledImg
-              src={sprites.other["official-artwork"].front_default}
-              alt={species?.name}
-            />
-          )}
-          <StyledIDWrapper>{`#${id}`}</StyledIDWrapper>
-          <StyledCardHead colorOne={colorOne} colorTwo={colorTwo}>
-            <StyledPokeball src={pokeball} alt="pokeball" />
-          </StyledCardHead>
-          <StyledCardBody>
-            <StyledCardBodyHeader>
-              <StyledCardBodyHeaderName>
-                {name.charAt(0).toUpperCase() + name.slice(1)}
-              </StyledCardBodyHeaderName>
-              <StyledCardBodyHeaderType>
-                {typeOne === typeTwo ? (
-                  <div>{iconOne}</div>
-                ) : (
-                  <div>
-                    {iconOne} {iconTwo}
-                  </div>
-                )}
-              </StyledCardBodyHeaderType>
-            </StyledCardBodyHeader>
-          </StyledCardBody>
-        </StyledCard>
-      </>
+      <StyledCard ref={ref} to={`/pokemon/${id}`} aria-label="pokemon-card">
+        {sprites?.other?.["official-artwork"] && (
+          <StyledImg
+            src={sprites.other["official-artwork"].front_default}
+            alt={species?.name}
+          />
+        )}
+        <StyledIDWrapper>{`#${id}`}</StyledIDWrapper>
+        <StyledCardHead colorOne={colorOne} colorTwo={colorTwo}>
+          <StyledPokeball src={pokeball} alt="pokeball" />
+        </StyledCardHead>
+        <StyledCardBody>
+          <StyledCardBodyHeader>
+            <StyledCardBodyHeaderName>
+              {capitalizeFirstLetter(name)}
+            </StyledCardBodyHeaderName>
+            <StyledCardBodyHeaderType>
+              {typeOne === typeTwo ? (
+                <div>{iconOne}</div>
+              ) : (
+                <div>
+                  {iconOne} {iconTwo}
+                </div>
+              )}
+            </StyledCardBodyHeaderType>
+          </StyledCardBodyHeader>
+        </StyledCardBody>
+      </StyledCard>
     );
   }
 );

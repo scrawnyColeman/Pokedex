@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   StyledContainer,
   StyledProfileCard,
@@ -25,7 +25,6 @@ const PokemonProfile = (): JSX.Element => {
   });
   const [hasDataLoaded, setHasDataLoaded] = useState(false);
   const params: any = useParams();
-  const history = useHistory();
   const pokeId = params.id;
 
   const moves = data?.moves;
@@ -75,7 +74,9 @@ const PokemonProfile = (): JSX.Element => {
 
   return hasDataLoaded ? (
     <>
-      <StyledBackBtn onClick={() => history.push("/")} src={dex} alt="dex" />
+      <Link to="/" aria-label="back-button">
+        <StyledBackBtn src={dex} alt="dex" />
+      </Link>
       <StyledContainer>
         <StyledProfileCard>
           <StyledProfileDisplayImgWrapper

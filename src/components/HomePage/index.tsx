@@ -13,7 +13,7 @@ const HomePage = (): JSX.Element => {
     false
   );
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=54`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=18`
   );
   const {
     isLoading: isPokemonListLoading,
